@@ -1,71 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="userInfo"
-            type="com.kk.tongfu.mvvmdemo.model.User"></variable>
-
-        <variable
-            name="usersHandler"
-            type="com.kk.tongfu.mvvmdemo.MainActivity.UsersHandler"></variable>
+            name="viewModel"
+            type="com.kk.tongfu.mvvmdemo.model.MainViewModel"></variable>
     </data>
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/view_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="单向数据绑定"
-            android:layout_gravity="center_horizontal"
-            />
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
 
-        <TextView
-            android:id="@+id/tv_userName"
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{userInfo.name,default=userName}"/>
-
-
-        <TextView
-            android:id="@+id/tv_userPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{userInfo.password,default=userPassword}"/>
-
-        <TextView
-            android:id="@+id/tv_UserAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{userInfo.address,default=henan}"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="改变名称"
-            android:onClick="@{()->usersHandler.changeUserName()}"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="改变密码"
-            android:onClick="@{()->usersHandler.changeUserPassword()}"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="改变住址"
-            android:onClick="@{()->usersHandler.changeUserAddress()}"
-            />
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:elevation="16dp"
+            app:menu="@menu/menu_homepage_bottom"></android.support.design.widget.BottomNavigationView>
+    </android.support.constraint.ConstraintLayout>
 </layout>

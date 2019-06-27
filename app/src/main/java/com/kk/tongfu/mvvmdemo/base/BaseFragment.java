@@ -12,12 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.kk.tongfu.mvvmdemo.R;
+import com.kk.tongfu.mvvmdemo.component.DaggerFragmentComponent;
+import com.kk.tongfu.mvvmdemo.component.FragmentComponent;
 import com.kk.tongfu.mvvmdemo.databinding.FragmentBaseBinding;
 import com.kk.tongfu.mvvmdemo.databinding.ViewErrorBinding;
 import com.kk.tongfu.mvvmdemo.databinding.ViewLoadingBinding;
 import com.kk.tongfu.mvvmdemo.databinding.ViewNoDataBinding;
 import com.kk.tongfu.mvvmdemo.databinding.ViewNoNetworkBinding;
 import com.kk.tongfu.mvvmdemo.enums.LoadState;
+
+import javax.inject.Inject;
 
 /**
  * Created by tongfu
@@ -28,6 +32,8 @@ import com.kk.tongfu.mvvmdemo.enums.LoadState;
 public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseViewModel> extends Fragment {
 
     protected DB mDataBinding;
+
+    @Inject
     protected VM mViewModel;
 
     private FragmentBaseBinding mBaseFragmentView;
@@ -43,7 +49,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initViewModel();
 
         if (mViewModel != null) {
             getLifecycle().addObserver(mViewModel);
@@ -56,12 +61,13 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBaseFragmentView = DataBindingUtil.inflate(inflater, R.layout.fragment_base, container, false);
         mDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), mBaseFragmentView.fragmentContainer, true);
-        initViewModel();
+        inject();
         bindModel();
         initLoadState();
         init();
         return mBaseFragmentView.getRoot();
     }
+
 
     private void initLoadState() {
         if (mViewModel != null && isSupportLoad()) {
@@ -126,7 +132,11 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
 
     protected abstract int getLayoutId();
 
-    protected abstract void initViewModel();
+    protected abstract void inject();
+
+    protected FragmentComponent getFragmentComponent(){
+        return DaggerFragmentComponent.builder().build();
+    }
 
     protected boolean isSupportLoad() {
         return false;

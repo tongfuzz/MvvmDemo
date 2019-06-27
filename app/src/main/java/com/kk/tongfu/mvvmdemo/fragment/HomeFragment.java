@@ -26,6 +26,7 @@ import com.kk.tongfu.mvvmdemo.databinding.FragmentHomeBinding;
 public class HomeFragment extends BaseFragment<FragmentHomeBinding,HomeFragmentViewModel> {
 
 
+
     @Override
     protected void init() {
         mDataBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
@@ -57,7 +58,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding,HomeFragmentV
     }
 
     @Override
-    protected void initViewModel() {
-        mViewModel=new HomeFragmentViewModel();
+    protected void inject() {
+        getFragmentComponent().inject(this);
     }
+
+
 }

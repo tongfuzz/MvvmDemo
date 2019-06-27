@@ -5,6 +5,9 @@ import android.databinding.ObservableList;
 
 import com.kk.tongfu.mvvmdemo.base.BaseViewModel;
 import com.kk.tongfu.mvvmdemo.bean.Article;
+import com.kk.tongfu.mvvmdemo.bean.DataManager;
+
+import javax.inject.Inject;
 
 /**
  * Created by tongfu
@@ -16,6 +19,10 @@ public class HomeFragmentViewModel extends BaseViewModel {
 
     public final  ObservableList<Object> mDataList=new ObservableArrayList<>();
 
+    @Inject
+    public HomeFragmentViewModel(DataManager dataManager){
+
+    }
 
 
 

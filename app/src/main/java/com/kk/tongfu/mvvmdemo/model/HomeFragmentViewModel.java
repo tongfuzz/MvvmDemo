@@ -4,6 +4,7 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
 import com.kk.tongfu.mvvmdemo.base.BaseViewModel;
+import com.kk.tongfu.mvvmdemo.bean.Article;
 
 /**
  * Created by tongfu
@@ -13,7 +14,9 @@ import com.kk.tongfu.mvvmdemo.base.BaseViewModel;
 
 public class HomeFragmentViewModel extends BaseViewModel {
 
-    protected ObservableList<Object> mDataList=new ObservableArrayList<>();
+    public final  ObservableList<Object> mDataList=new ObservableArrayList<>();
+
+
 
 
 

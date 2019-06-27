@@ -22,6 +22,6 @@ public abstract class BaseItemViewModel<T> extends BaseObservable {
         setAllModel(baseModel);
     }
 
-    public abstract void setAllModel(T baseModel);
+    protected abstract void setAllModel(T baseModel);
 
 }

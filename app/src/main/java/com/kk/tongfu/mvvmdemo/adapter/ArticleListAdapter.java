@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.kk.tongfu.mvvmdemo.base.BaseAdapter;
+import com.kk.tongfu.mvvmdemo.bean.Article;
 import com.kk.tongfu.mvvmdemo.viewholder.ArticleViewHolder;
 
 /**
@@ -14,7 +15,7 @@ import com.kk.tongfu.mvvmdemo.viewholder.ArticleViewHolder;
  * Desc:
  */
 
-public class ArticleListAdapter extends BaseAdapter<RecyclerView.ViewHolder> {
+public class ArticleListAdapter extends BaseAdapter<ArticleViewHolder> {
 
     public ArticleListAdapter(@NonNull ObservableList<Object> dataList) {
         super(dataList);
@@ -22,13 +23,13 @@ public class ArticleListAdapter extends BaseAdapter<RecyclerView.ViewHolder> {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return new ArticleViewHolder(viewGroup);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
+    public void onBindViewHolder(@NonNull ArticleViewHolder viewHolder, int i) {
+        viewHolder.getmViewModel().setBaseModel((Article) mDataList.get(i));
     }
 
 }

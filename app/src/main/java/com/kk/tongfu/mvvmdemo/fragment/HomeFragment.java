@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.kk.tongfu.mvvmdemo.R;
 import com.kk.tongfu.mvvmdemo.adapter.ArticleListAdapter;
 import com.kk.tongfu.mvvmdemo.base.BaseFragment;
+import com.kk.tongfu.mvvmdemo.bean.Article;
 import com.kk.tongfu.mvvmdemo.model.HomeFragmentViewModel;
 import com.kk.tongfu.mvvmdemo.databinding.FragmentHomeBinding;
 
@@ -29,6 +30,20 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding,HomeFragmentV
     protected void init() {
         mDataBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         mDataBinding.recyclerView.setAdapter(new ArticleListAdapter(mViewModel.mDataList));
+        Article article=new Article();
+        article.setApkLink("haha");
+        article.setAuthor("tongfu");
+        article.setChapterId(10);
+        article.setChapterName("zhongwen");
+        article.setCollect(true);
+        article.setDesc("this is des");
+        article.setEnvelopePic("");
+        article.setFresh(true);
+        article.setCourseId(20);
+        article.setId(30);
+        article.setNiceDate("2016-10-24");
+        mViewModel.mDataList.add(new Article());
+
     }
 
     @Override
